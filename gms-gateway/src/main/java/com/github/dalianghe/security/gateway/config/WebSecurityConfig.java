@@ -13,7 +13,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http
-                .formLogin().loginPage("/login").defaultSuccessUrl("").permitAll()
+                .formLogin().loginPage("/login").defaultSuccessUrl("/index").permitAll()
                 .and()
                 .logout().logoutSuccessUrl("/login").invalidateHttpSession(true)
                 .and()
