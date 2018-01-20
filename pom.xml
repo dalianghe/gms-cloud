@@ -36,7 +36,6 @@
         <module>gms-gateway</module>
         <module>gms-common</module>
         <module>gms-config</module>
-        <module>gms-api</module>
         <module>gms-ui</module>
         <module>gms-admin</module>
     </modules>

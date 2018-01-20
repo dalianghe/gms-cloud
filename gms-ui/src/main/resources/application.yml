@@ -1,6 +1,8 @@
 spring:
     application:
         name: admin-ui
+    profiles:
+        active: dev
     thymeleaf:
         mode: LEGACYHTML5
         cache: false
@@ -9,25 +11,19 @@ spring:
         time-zone: GMT+8
         default-property-inclusion: non_null
 
-server:
-    port: 8766  # 服务端口
-
 eureka:
     instance:
         statusPageUrlPath: /info
         healthCheckUrlPath: /health
-    client:
-        serviceUrl:
-            defaultZone: http://localhost:8761/eureka/
-
-back:
-  ribbon:
-    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.BestAvailableRule
+        lease-renewal-interval-in-seconds: 10  # 更新时间间隔，默认30，即30秒发送一次心跳
+        lease-expiration-duration-in-seconds: 30 #  到期时间，默认90秒
+        prefer-ip-address: true
+        instance-id: ${spring.cloud.client.ipAddress}:${server.port}
 
 hystrix:
-  command:
-    default:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 5000
+    command:
+        default:
+            execution:
+                isolation:
+                    thread:
+                        timeoutInMilliseconds: 5000
