@@ -1,6 +1,8 @@
 spring:
     application:
         name: admin-gateway
+    profiles:
+        active: dev
     thymeleaf:
         mode: LEGACYHTML5
         cache: false
@@ -17,6 +19,7 @@ zuul:
         back:  #  后台路由
             path: /back/**
             serviceId: admin-back
+
         ui:  #  前台路由
             path: /admin/**
             serviceId: admin-ui
@@ -25,10 +28,30 @@ eureka:
     instance:
         statusPageUrlPath: /info
         healthCheckUrlPath: /health
+        lease-renewal-interval-in-seconds: 10  # 更新时间间隔，默认30，即30秒发送一次心跳
+        lease-expiration-duration-in-seconds: 30 #  到期时间，默认90秒
+        prefer-ip-address: true
+        instance-id: ${spring.cloud.client.ipAddress}:${server.port}
     client:
         serviceUrl:
             defaultZone: http://localhost:8761/eureka/
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
 
+ribbon:
+    ReadTimeout: 60000
+    ConnectTimeout: 60000
+    MaxAutoRetries: 0
+    MaxAutoRetriesNextServer: 1
+    eureka:
+        enabled: true  # spring cloud是默认关闭Hystrix的断路器功能
 gate:
     ignore:
         startWith: /static
