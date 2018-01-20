@@ -1,6 +1,6 @@
 spring:
     application:
-        name: gms-admin
+        name: admin-back
     profiles:
         active: dev
 

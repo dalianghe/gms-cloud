@@ -51,10 +51,17 @@
             <artifactId>spring-boot-starter-undertow</artifactId>
         </dependency>
 
+        <!--增加eureka-server的依赖-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-eureka</artifactId>
         </dependency>
+
+        <!--增加hystrix熔断机制-->
+        <!--<dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-hystrix</artifactId>
+        </dependency>-->
 
         <!-- 引入Actuator监控 -->
         <dependency>

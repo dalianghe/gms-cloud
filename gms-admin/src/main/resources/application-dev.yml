@@ -4,8 +4,6 @@ logging:
         com.github.dalianghe.security.admin: DEBUG
 
 spring:
-    application:
-        name: gms-admin
     jackson:
         date-format: yyyy-MM-dd HH:mm:ss
         time-zone: GMT+8
